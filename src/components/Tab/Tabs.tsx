@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { TabsEnums } from "./type-Tabs";
+import { TabsEnums } from "./typeTabs";
 const tabsEnums: TabsEnums = {
   HOME: {
     name: "首页",
@@ -20,11 +20,14 @@ const tabsEnums: TabsEnums = {
 };
 export default function Tabs() {
   const [state, setState] = useState(tabsEnums.HOME.key);
+  const handleSetState = (key: number) => {
+    setState(key);
+  }
   return (
     <ButtonContainer>
       {Object.values(tabsEnums).map((tab) => (
         <Button
-          onClick={() => setState(tab.key)}
+          onClick={() => handleSetState(tab.key)}
           active={state === tab.key ? 1 : null}
           key={tab.key}
         >
@@ -57,7 +60,7 @@ const Button = styled.div<{ active: number | null }>`
   border-radius: 15px 6px 15px 6px;
   font-weight: 700;
   transition: all 0.3s linear;
-  color: ${(props) => (props.active ? "#000000" : "#fffff")};
+  color: ${(props) => (props.active ? "#000000" : "#ffffff")};
   transform: skewX(-10deg)${(props) => (props.active ? "scale(1.04)" : "")};
   background: ${(props) => (props.active ? "#ffde3e" : "transparent")};
   cursor: pointer;
